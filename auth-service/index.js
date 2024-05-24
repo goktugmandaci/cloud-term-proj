@@ -26,7 +26,7 @@ app.use((req, res, next) => {
     next();
 });
 
-app.post("/auth/register", async (req, res) => {
+app.post("/users/create", async (req, res) => {
     try {
         const { name, email } = req.body;
         const newUser = new User({
@@ -36,12 +36,12 @@ app.post("/auth/register", async (req, res) => {
         await newUser.save();
         return res.json(newUser);
     } catch (error) {
-        console.error("Error registering user:", error);
-        return res.status(500).json({ message: "Error registering user" });
+        console.error("Error creating user:", error);
+        return res.status(500).json({ message: "Error creating user" });
     }
 });
 
-app.delete("/user/:id", async (req, res) => {
+app.delete("/users/:id", async (req, res) => {
     const { id } = req.params;
     try {
         const deletedUser = await User.findByIdAndDelete(id);
@@ -55,7 +55,7 @@ app.delete("/user/:id", async (req, res) => {
     }
 });
 
-app.get("/user", async (req, res) => {
+app.get("/users", async (req, res) => {
     try {
         const users = await User.find();
         return res.json(users);
@@ -66,7 +66,7 @@ app.get("/user", async (req, res) => {
 });
 
 
-app.get("/user/:name", async (req, res) => {
+app.get("/users/:name", async (req, res) => {
     const { name } = req.params;
     try {
         const user = await User.findOne({ name });

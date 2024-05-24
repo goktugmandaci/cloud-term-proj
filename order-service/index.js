@@ -26,9 +26,9 @@ app.use((req, res, next) => {
     next();
 });
 
-app.post("/order/create", async (req, res) => {
+app.post("/orders/create", async (req, res) => {
     try {
-        const { products, userEmail } = req.body;
+        const { products, username } = req.body;
 
         let total = 0;
         for (let i = 0; i < products.length; i++) {
@@ -37,7 +37,7 @@ app.post("/order/create", async (req, res) => {
 
         const newOrder = new Order({
             products,
-            user: userEmail,
+            user: username,
             total_price: total
         });
 
@@ -61,7 +61,7 @@ app.get("/orders", async (req, res) => {
 });
 
 
-app.delete("/order/:id", async (req, res) => {
+app.delete("/orders/:id", async (req, res) => {
     const { id } = req.params;
     try {
         const deletedOrder = await Order.findByIdAndDelete(id);

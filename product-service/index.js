@@ -26,13 +26,7 @@ mongoose.connect(
         console.error(`Error connecting to Products DB: ${error}`);
     });
 
-app.post("/product/buy", async (req, res) => {
-    const { ids } = req.body;
-    const products = await Product.find({ _id: { $in: ids } });
-    return res.json(products);
-});
-
-app.post("/product/create", async (req, res) => {
+app.post("/products/create", async (req, res) => {
     const { name, description, price } = req.body;
     const newProduct = new Product({
         name,
@@ -43,11 +37,10 @@ app.post("/product/create", async (req, res) => {
     return res.json(newProduct);
 });
 
-
-app.delete("/product/:name", async (req, res) => {
-    const { name } = req.params;
+app.delete("/products/:id", async (req, res) => {
+    const { id } = req.params;
     try {
-        const deletedProduct = await Product.findOne({ name });
+        const deletedProduct = await Product.findByIdAndDelete(id);
         if (!deletedProduct) {
             return res.status(404).json({ message: "Product not found" });
         }
@@ -57,8 +50,7 @@ app.delete("/product/:name", async (req, res) => {
     }
 });
 
-
-app.get("/product", async (req, res) => {
+app.get("/products", async (req, res) => {
     try {
         const products = await Product.find();
         return res.json(products);
@@ -67,11 +59,10 @@ app.get("/product", async (req, res) => {
     }
 });
 
-
-app.get("/product/:name", async (req, res) => {
-    const { name } = req.params;
+app.get("/products/:id", async (req, res) => {
+    const { id } = req.params;
     try {
-        const product = await Product.findOne({ name });
+        const product = await Product.findById(id);
         if (!product) {
             return res.status(404).json({ message: "Product not found" });
         }
