@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 const Order = require("./Order");
 
 mongoose.connect(
-    "mongodb://35.234.124.208/orders",
+    "mongodb://34.107.6.232/orders",
     {
         useNewUrlParser: true
     }

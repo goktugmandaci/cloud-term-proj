@@ -6,7 +6,7 @@ const Product = require("./Product");
 
 app.use(express.json());
 mongoose.connect(
-    "mongodb://35.234.124.208/products",
+    "mongodb://34.107.6.232/products",
     {
         useNewUrlParser: true
     }

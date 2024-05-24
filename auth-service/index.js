@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 const User = require("./User");
 
 mongoose.connect(
-    "mongodb://35.234.124.208/customers",
+    "mongodb://34.107.6.232/customers",
     {
         useNewUrlParser: true
     }
