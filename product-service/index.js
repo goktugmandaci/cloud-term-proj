@@ -35,6 +35,44 @@ app.post("/product/create", async (req, res) => {
     return res.json(newProduct);
 });
 
+
+app.delete("/product/:id", async (req, res) => {
+    const { id } = req.params;
+    try {
+        const deletedProduct = await Product.findByIdAndDelete(id);
+        if (!deletedProduct) {
+            return res.status(404).json({ message: "Product not found" });
+        }
+        return res.json({ message: "Product deleted successfully" });
+    } catch (error) {
+        return res.status(500).json({ message: "Error deleting product", error });
+    }
+});
+
+
+app.get("/product", async (req, res) => {
+    try {
+        const products = await Product.find();
+        return res.json(products);
+    } catch (error) {
+        return res.status(500).json({ message: "Error fetching products", error });
+    }
+});
+
+
+app.get("/product/name/:name", async (req, res) => {
+    const { name } = req.params;
+    try {
+        const product = await Product.findOne({ name });
+        if (!product) {
+            return res.status(404).json({ message: "Product not found" });
+        }
+        return res.json(product);
+    } catch (error) {
+        return res.status(500).json({ message: "Error fetching product", error });
+    }
+});
+
 app.listen(PORT, () => {
     console.log(`Product Service at ${PORT}`);
 });
