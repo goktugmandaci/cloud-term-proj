@@ -36,10 +36,10 @@ app.post("/product/create", async (req, res) => {
 });
 
 
-app.delete("/product/:id", async (req, res) => {
-    const { id } = req.params;
+app.delete("/product/:name", async (req, res) => {
+    const { name } = req.params;
     try {
-        const deletedProduct = await Product.findByIdAndDelete(id);
+        const deletedProduct = await Product.findOne({ name });
         if (!deletedProduct) {
             return res.status(404).json({ message: "Product not found" });
         }
@@ -60,7 +60,7 @@ app.get("/product", async (req, res) => {
 });
 
 
-app.get("/product/name/:name", async (req, res) => {
+app.get("/product/:name", async (req, res) => {
     const { name } = req.params;
     try {
         const product = await Product.findOne({ name });

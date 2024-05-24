@@ -34,7 +34,6 @@ app.post("/auth/register", async (req, res) => {
     }
 });
 
-// Function to delete a user by ID
 app.delete("/user/:id", async (req, res) => {
     const { id } = req.params;
     try {

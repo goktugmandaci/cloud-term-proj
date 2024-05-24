@@ -19,20 +19,55 @@ mongoose.connect(
 
 app.use(express.json());
 
-function createOrder(products, userEmail) {
-    let total = 0;
-    for (let t = 0; t < products.length; ++t) {
-        total += products[t].price;
+app.post("/order/create", async (req, res) => {
+    try {
+        const { products, userEmail } = req.body;
+
+        let total = 0;
+        for (let i = 0; i < products.length; i++) {
+            total += products[i].price;
+        }
+
+        const newOrder = new Order({
+            products,
+            user: userEmail,
+            total_price: total
+        });
+
+        await newOrder.save();
+
+        return res.status(201).json(newOrder);
+    } catch (error) {
+        console.error("Error creating order:", error);
+        return res.status(500).json({ message: "Error creating order" });
     }
-    const newOrder = new Order({
-        products,
-        user: userEmail,
-        total_price: total,
-    });
-    newOrder.save();
-    return newOrder;
-}
+});
+
+app.get("/orders", async (req, res) => {
+    try {
+        const orders = await Order.find();
+        return res.json(orders);
+    } catch (error) {
+        console.error("Error fetching orders:", error);
+        return res.status(500).json({ message: "Error fetching orders" });
+    }
+});
+
+
+app.delete("/order/:id", async (req, res) => {
+    const { id } = req.params;
+    try {
+        const deletedOrder = await Order.findByIdAndDelete(id);
+        if (!deletedOrder) {
+            return res.status(404).json({ message: "Order not found" });
+        }
+        return res.json({ message: "Order deleted successfully" });
+    } catch (error) {
+        console.error("Error deleting order:", error);
+        return res.status(500).json({ message: "Error deleting order" });
+    }
+});
 
 app.listen(PORT, () => {
-    console.log(`Order-Service at ${PORT}`);
+    console.log(`Order Service at ${PORT}`);
 });
