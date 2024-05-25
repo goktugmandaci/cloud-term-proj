@@ -41,7 +41,7 @@ const Products = () => {
     try {
       console.log(_products)
       const requestBody = { products: _products, username: _username || "web-browser" }
-      const response = await axios.post('https://order-microservice-hwnuitb34a-ey.a.run.app/create', requestBody);
+      const response = await axios.post('https://order-microservice-hwnuitb34a-ey.a.run.app/orders/create', requestBody);
       console.log(response)
       window.location.reload()
     } catch (error) {

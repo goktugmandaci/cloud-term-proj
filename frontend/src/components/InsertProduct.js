@@ -12,7 +12,7 @@ const InsertProduct = () => {
     e.preventDefault()
     try {
       const requestBody = { name: _name, description: _description, price: _price }
-      const response = await axios.post('https://product-microservice-hwnuitb34a-ey.a.run.app/create', requestBody)
+      const response = await axios.post('https://product-microservice-hwnuitb34a-ey.a.run.app/products/create', requestBody)
       console.log(response.data)
     } catch (error) {
       console.log("Error inserting product: ", error)
