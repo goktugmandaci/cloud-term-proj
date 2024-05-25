@@ -9,7 +9,7 @@ const Orders = () => {
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const response = await axios.get('http://localhost:9090/orders');
+        const response = await axios.get('https://order-service-v2-hwnuitb34a-ey.a.run.app/orders');
         setOrders(response.data);
         console.log(response.data)
       } catch (error) {
@@ -23,7 +23,7 @@ const Orders = () => {
 
   const deleteorder = async (order_id) => {
     try {
-      const requestURL = `http://localhost:9090/Orders/${order_id}`
+      const requestURL = `https://order-service-v2-hwnuitb34a-ey.a.run.app/orders/${order_id}`
       const response = await axios.delete(requestURL);
       console.log(response)
       window.location.reload()

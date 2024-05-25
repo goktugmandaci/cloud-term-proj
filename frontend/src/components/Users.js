@@ -7,7 +7,7 @@ const Users = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await axios.get('http://localhost:7070/users');
+        const response = await axios.get('https://auth-service-v2-hwnuitb34a-ey.a.run.app/users');
         setUsers(response.data);
         console.log(response.data)
       } catch (error) {
@@ -21,7 +21,7 @@ const Users = () => {
 
   const deleteUser = async (user_id) => {
     try {
-      const requestURL = `http://localhost:7070/users/${user_id}`
+      const requestURL = `https://auth-service-v2-hwnuitb34a-ey.a.run.app/${user_id}`
       const response = await axios.delete(requestURL);
       console.log(response)
       window.location.reload()
