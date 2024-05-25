@@ -13,6 +13,7 @@ const InsertUser = () => {
       const requestBody = { name: _username, email: _email }
       const response = await axios.post('https://auth-microservice-hwnuitb34a-ey.a.run.app/users/create', requestBody)
       console.log(response.data)
+      window.location.reload()
     } catch (error) {
       console.log("Error inserting user: ", error)
     }
