@@ -7,17 +7,19 @@ class UserBehavior(TaskSet):
     def list_orders(self):
         self.client.get("/orders")
 
+    ## This is problematic
     @task
     def create_order(self):
         order_data = {
             "products": [
-                {"product_id": "123", "price": 10},
-                {"product_id": "124", "price": 15},
+                {"name": "testproduct1", "price": 10, "description": "abc"},
+                {"name": "testproduct2", "price": 15, "description": "def"},
             ],
             "username": "testuser",
         }
         self.client.post("/orders/create", json=order_data)
 
+    ## This is problematic
     @task
     def delete_order(self):
         # Order ID should be an existing order ID in the database for testing
@@ -33,6 +35,7 @@ class UserBehavior(TaskSet):
         user_data = {"name": "testuser", "email": "testuser@example.com"}
         self.client.post("/users/create", json=user_data)
 
+    ## This is problematic
     @task
     def delete_user(self):
         # User ID should be an existing user ID in the database for testing
@@ -49,6 +52,7 @@ class UserBehavior(TaskSet):
     def list_products(self):
         self.client.get("/products")
 
+    ## This is problematic
     @task
     def create_product(self):
         product_data = {
@@ -58,6 +62,7 @@ class UserBehavior(TaskSet):
         }
         self.client.post("/products/create", json=product_data)
 
+    ## This is problematic
     @task
     def delete_product(self):
         # Product ID should be an existing product ID in the database for testing
@@ -74,7 +79,7 @@ class UserBehavior(TaskSet):
 class WebsiteUser(HttpUser):
     tasks = [UserBehavior]
     wait_time = between(1, 2)
-    host = "http://localhost:3000"  # Frontend URL
+    host = "http://35.207.120.101"  # Frontend URL
 
 
 if __name__ == "__main__":
