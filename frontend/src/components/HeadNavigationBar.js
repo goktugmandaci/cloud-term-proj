@@ -18,6 +18,12 @@ const HeadNavigationBar = () => {
           <li class="nav-item active">
             <a class="nav-link" href="orders">Orders</a>
           </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="insert-product">Insert Product</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="insert-user">Insert User</a>
+          </li>
         </ul>
       </div>
     </nav>

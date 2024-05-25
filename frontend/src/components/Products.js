@@ -6,6 +6,7 @@ const Products = () => {
   const [products, setProducts] = useState([]);
   const [cart_products, setCartProducts] = useState([]);
   const [cart_product_ids, setCartProductIDs] = useState([]);
+  const [_username, setUsername] = useState("")
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -39,17 +40,32 @@ const Products = () => {
   const buy = async (_products) => {
     try {
       console.log(_products)
-      const requestBody = { products: _products, username: "web-browser" }
+      const requestBody = { products: _products, username: _username || "web-browser" }
       const response = await axios.post('http://localhost:9090/orders/create', requestBody);
       console.log(response)
+      window.location.reload()
     } catch (error) {
       console.error('Error creating order: ', error);
     }
   }
+
+  const deleteProduct = async (product_id) => {
+    try {
+      const requestURL = `http://localhost:8080/products/${product_id}`
+      const response = await axios.delete(requestURL);
+      console.log(response)
+      window.location.reload()
+    } catch (error) {
+      console.error('Error deleting product: ', error);
+    }
+  }
+
   return (
     <div className='App'>
       <br></br>
+      <br></br>
       <h5>CART</h5>
+      <br></br>
       <table className='table'>
         {cart_products.map(product => (
           <tr key={product._id}>
@@ -65,7 +81,13 @@ const Products = () => {
         <button className="btn btn-danger" onClick={() => clearCart()}>Clear</button>
       </div>
       <br></br>
-      <h5>Products</h5>
+      <div >
+        <label for="username">USERNAME</label>
+        <input onChange={(e) => setUsername(e.target.value)} type="text" class="form-control" id="username" aria-describedby="username" placeholder="" />
+      </div>
+      <br></br>
+      <h5>PRODUCTS</h5>
+      <br></br>
       <table class="table">
         <thead>
           <tr>
@@ -87,8 +109,10 @@ const Products = () => {
 
 
               <td>{product.description}</td>
-
-              <td><button className='btn btn-primary mr-2' onClick={() => addToCart(product)}>Add To Cart</button></td>
+              <td>
+                <button className='btn btn-primary mr-2' onClick={() => addToCart(product)}>Add To Cart</button>
+                <button className='btn btn-danger' onClick={() => deleteProduct(product._id)}>Delete</button>
+              </td>
             </tr>
           ))}
         </tbody>

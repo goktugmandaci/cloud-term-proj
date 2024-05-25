@@ -7,13 +7,12 @@ const InsertUser = () => {
   const [_username, setUsername] = useState("");
   const [_email, setEmail] = useState("")
 
-  const submitHandler = async () => {
+  const submitHandler = async (e) => {
     e.preventDefault()
     try {
-      const requestBody = { username: _username, email: _email }
+      const requestBody = { name: _username, email: _email }
       const response = await axios.post('http://localhost:7070/users/create', requestBody)
       console.log(response.data)
-      window.location.reload()
     } catch (error) {
       console.log("Error inserting user: ", error)
     }
@@ -21,13 +20,17 @@ const InsertUser = () => {
 
   return (
     <div className='App'>
-      <form onSubmit={() => submitHandler()}>
+      <br></br>
+      <br></br>
+      <h5>INSERT USER</h5>
+      <br></br>
+      <form onSubmit={submitHandler}>
         <div class="form-group">
-          <label for="username">Username</label>
+          <label for="username">USERNAME</label>
           <input onChange={(e) => setUsername(e.target.value)} type="text" class="form-control" id="username" aria-describedby="username" placeholder="Username" />
         </div>
         <div class="form-group">
-          <label for="email">E-Mail</label>
+          <label for="email">E-MAIL</label>
           <input onChange={(e) => setEmail(e.target.value)} type="text" class="form-control" id="email" placeholder="Email" />
         </div>
         <button type="submit" class="btn btn-primary">Insert User</button>

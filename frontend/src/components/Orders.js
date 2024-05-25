@@ -36,7 +36,10 @@ const Orders = () => {
 
   return (
     <div className='App'>
-      <h5>Orders</h5>
+      <br></br>
+      <br></br>
+      <h5>ORDERS</h5>
+      <br></br>
       <table class="table">
 
         <thead>

@@ -34,7 +34,10 @@ const Users = () => {
 
   return (
     <div className='App'>
+      <br></br>
+      <br></br>
       <h5>USERS</h5>
+      <br></br>
       <table class="table">
 
         <thead>
