@@ -11,7 +11,7 @@ const InsertUser = () => {
     e.preventDefault()
     try {
       const requestBody = { name: _username, email: _email }
-      const response = await axios.post('https://auth-service-v2-hwnuitb34a-ey.a.run.app/create', requestBody)
+      const response = await axios.post('https://auth-microservice-hwnuitb34a-ey.a.run.app/create', requestBody)
       console.log(response.data)
     } catch (error) {
       console.log("Error inserting user: ", error)

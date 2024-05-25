@@ -11,7 +11,7 @@ const Products = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get('https://product-service-v2-hwnuitb34a-ey.a.run.app/products');
+        const response = await axios.get('https://product-microservice-hwnuitb34a-ey.a.run.app/products');
         setProducts(response.data);
         console.log(response.data)
       } catch (error) {
@@ -41,7 +41,7 @@ const Products = () => {
     try {
       console.log(_products)
       const requestBody = { products: _products, username: _username || "web-browser" }
-      const response = await axios.post('https://product-service-v2-hwnuitb34a-ey.a.run.app/create', requestBody);
+      const response = await axios.post('https://order-microservice-hwnuitb34a-ey.a.run.app/create', requestBody);
       console.log(response)
       window.location.reload()
     } catch (error) {
@@ -51,7 +51,7 @@ const Products = () => {
 
   const deleteProduct = async (product_id) => {
     try {
-      const requestURL = `https://product-service-v2-hwnuitb34a-ey.a.run.app/products/${product_id}`
+      const requestURL = `https://product-microservice-hwnuitb34a-ey.a.run.app/products/${product_id}`
       const response = await axios.delete(requestURL);
       console.log(response)
       window.location.reload()

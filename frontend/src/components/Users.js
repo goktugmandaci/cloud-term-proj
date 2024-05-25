@@ -7,7 +7,7 @@ const Users = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await axios.get('https://auth-service-v2-hwnuitb34a-ey.a.run.app/users');
+        const response = await axios.get('https://auth-microservice-hwnuitb34a-ey.a.run.app/users');
         setUsers(response.data);
         console.log(response.data)
       } catch (error) {
@@ -21,7 +21,7 @@ const Users = () => {
 
   const deleteUser = async (user_id) => {
     try {
-      const requestURL = `https://auth-service-v2-hwnuitb34a-ey.a.run.app/${user_id}`
+      const requestURL = `https://auth-microservice-hwnuitb34a-ey.a.run.app/${user_id}`
       const response = await axios.delete(requestURL);
       console.log(response)
       window.location.reload()
