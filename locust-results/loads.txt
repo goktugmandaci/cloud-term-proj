@@ -1,3 +1,3 @@
-10 - 1 - 5m
-100 - 5 - 10m
-500 - 20 - 15m
+Light: 10 users- 1 per second - 5m
+Medium: 100 users - 5 per second - 10m
+Heavy(High): 500 users - 20 per second - 15m
