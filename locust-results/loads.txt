@@ -1,3 +1,11 @@
+BACKEND MICROSERVICES:
 Light: 10 users- 1 per second - 5m
 Medium: 100 users - 5 per second - 10m
 Heavy(High): 500 users - 20 per second - 15m
+
+
+FRONTEND:
+Light: 1000 users- 10 per second - 5m
+Medium: 5000 users - 50 per second - 5m
+Heavy(High): 25000 users - 250 per second - 10m
+
