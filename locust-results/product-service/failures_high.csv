@@ -1,0 +1,5 @@
+Method,Name,Error,Occurrences
+GET,/products,HTTPError('429 Client Error: Too Many Requests for url: /products'),824
+POST,/products/create,HTTPError('429 Client Error: Too Many Requests for url: /products/create'),608
+GET,/products,RemoteDisconnected('Remote end closed connection without response'),6
+GET,/products,"ChunkedEncodingError(ProtocolError(""Connection broken: ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None)"", ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None)))",1

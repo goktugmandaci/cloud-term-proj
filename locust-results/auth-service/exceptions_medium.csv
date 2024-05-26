@@ -1,0 +1,12 @@
+Count,Message,Traceback,Nodes
+41,Expecting value: line 1 column 1 (char 0),"  File ""c:\users\gbora\appdata\local\programs\python\python39\lib\site-packages\locust\user\task.py"", line 340, in run
+    self.execute_next_task()
+  File ""c:\users\gbora\appdata\local\programs\python\python39\lib\site-packages\locust\user\task.py"", line 373, in execute_next_task
+    self.execute_task(self._task_queue.popleft())
+  File ""c:\users\gbora\appdata\local\programs\python\python39\lib\site-packages\locust\user\task.py"", line 385, in execute_task
+    task(self)
+  File ""C:\Users\gbora\Desktop\cloud-term-proj\cloud-term-proj\locust\auth-locust.py"", line 19, in delete_user
+    users = response.json()
+  File ""c:\users\gbora\appdata\local\programs\python\python39\lib\site-packages\requests\models.py"", line 978, in json
+    raise RequestsJSONDecodeError(e.msg, e.doc, e.pos)
+",local
