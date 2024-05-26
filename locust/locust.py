@@ -12,8 +12,8 @@ class UserBehavior(TaskSet):
     def create_order(self):
         order_data = {
             "products": [
-                {"name": "testproduct1", "price": 10, "description": "abc"},
-                {"name": "testproduct2", "price": 15, "description": "def"},
+                {"name": "testproduct1", "price": 10, "description": "testproduct-locust-1"},
+                {"name": "testproduct2", "price": 15, "description": "testproduct-locust-2"},
             ],
             "username": "testuser",
         }
